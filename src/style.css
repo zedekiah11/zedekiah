@@ -4,42 +4,48 @@ html, body {
   margin: 0;
   padding: 0;
   height: 100%;
-  font-family: Arial, Helvetica, sans-serif;
-  overflow-x: hidden; /* Prevent horizontal overflow */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-x: hidden;
 }
 
 :root {
-  --default: #121213;
-  --empty: #3a3a3c;
+  --default: #1a1a1d;
+  --empty: #3c3c3e;
   --wrong: #b59f3b;
   --right: #538d4e;
+  --text-light: #e4e4e7;
+  --key-bg: #565758;
 }
 
 #game {
   display: flex;
   justify-content: center;
-  align-items: start;
+  align-items: flex-start;
   margin-top: 5rem;
   width: 100%;
-  height: 72vh;
+  height: 60vh;
 }
 
 .grid {
   display: grid;
   grid-template-rows: repeat(6, auto);
   grid-template-columns: repeat(5, auto);
-  gap: 4px; /* Added gap to handle spacing between boxes */
+  gap: 5px;
 }
 
 .box {
   width: 60px;
   height: 60px;
   border: 2px solid var(--empty);
-  color: white;
-  text-transform: uppercase;
-  display: grid;
-  place-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-size: 2.4rem;
+  text-transform: uppercase;
+  color: white;
 }
 
 .box.empty {
@@ -54,6 +60,73 @@ html, body {
   background: var(--right);
 }
 
+/* On-screen keyboard styles */
+#keyboard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1rem;
+  width: 100%; /* Fluid width */
+  max-width: 650px; /* Restrict max size for desktop */
+}
+
+.keyboard-row {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 8px;
+  width: 100%;
+}
+
+.key {
+  width: 52px;
+  height: 68px;
+  background-color: var(--key-bg);
+  color: var(--text-light);
+  margin: 3px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.4rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.key.large {
+  width: 90px;
+}
+
+.key.correct {
+  background-color: var(--right);
+}
+
+.key.misplaced {
+  background-color: var(--wrong);
+}
+
+.key:disabled {
+  background-color: var(--empty);
+  cursor: not-allowed;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 600px) {
+  .key {
+    width: 45px;
+    height: 55px;
+    font-size: 1.2rem;
+  }
+
+  .key.large {
+    width: 75px;
+  }
+
+  #keyboard {
+    width: 90%;
+  }
+}
+
+/* Animations */
 .animated {
   animation: flip 0.5s ease;
 }
@@ -114,75 +187,4 @@ hr {
   font-size: 24px;
   color: white;
   text-decoration: none;
-}
-
-/* On-screen keyboard styles */
-#keyboard {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 1rem;
-  width: 80%; /* Default width for desktop users */
-  max-width: 1000px; /* Max width to prevent keyboard from getting too large */
-  box-sizing: border-box; /* Ensure padding is included in width */
-}
-
-.keyboard-row {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 8px;
-  width: 100%; /* Ensure rows take full width */
-  overflow: hidden; /* Prevent overflow */
-}
-
-.key {
-  width: 60px; /* Default width for desktop users */
-  height: 80px; /* Default height for desktop users */
-  background-color: #818384;
-  color: white;
-  margin: 3px;
-  border-radius: 5px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1.4rem; /* Default font size for desktop users */
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.key.large {
-  width: 100px; /* Default width for large keys */
-}
-
-.key:disabled {
-  background-color: #3a3a3c; /* Gray for disabled keys */
-  cursor: not-allowed; /* Show not-allowed cursor */
-}
-
-/* Correct letter style */
-.key.correct {
-  background-color: #538d4e; /* Green for correct letters */
-}
-
-/* Misplaced letter style */
-.key.misplaced {
-  background-color: #b59f3b; /* Yellow for misplaced letters */
-}
-
-/* Mobile specific adjustments */
-@media (max-width: 600px) {
-  #keyboard {
-    width: 95%; /* Adjust width to fit mobile screen */
-    max-width: none; /* Remove max-width constraint on mobile */
-  }
-
-  .key {
-    width: 45px; /* Adjust width for mobile */
-    height: 60px; /* Adjust height for mobile */
-    font-size: 1.2rem; /* Adjust font size for mobile */
-  }
-
-  .key.large {
-    width: 70px; /* Adjust width for large keys on mobile */
-  }
 }
