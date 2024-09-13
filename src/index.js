@@ -6,7 +6,9 @@ console.log('test dictionary:', testDictionary);
 const dictionary = realDictionary;
 const state = {
   secret: dictionary[Math.floor(Math.random() * dictionary.length)],
-  grid: Array(6).fill().map(() => Array(5).fill('')),
+  grid: Array(6)
+    .fill()
+    .map(() => Array(5).fill('')),
   currentRow: 0,
   currentCol: 0,
 };
@@ -67,11 +69,9 @@ function handleKey(key) {
         alert('Not a valid word.');
       }
     }
-  }
-  if (key === 'Backspace') {
+  } else if (key === 'Backspace') {
     removeLetter();
-  }
-  if (isLetter(key)) {
+  } else if (isLetter(key)) {
     addLetter(key);
   }
 
@@ -79,7 +79,7 @@ function handleKey(key) {
 }
 
 function getCurrentWord() {
-  return state.grid[state.currentRow].reduce((prev, curr) => prev + curr);
+  return state.grid[state.currentRow].reduce((prev, curr) => prev + curr, '');
 }
 
 function isWordValid(word) {
@@ -87,23 +87,15 @@ function isWordValid(word) {
 }
 
 function getNumOfOccurrencesInWord(word, letter) {
-  let result = 0;
-  for (let i = 0; i < word.length; i++) {
-    if (word[i] === letter) {
-      result++;
-    }
-  }
-  return result;
+  return word.split(letter).length - 1;
 }
 
 function getPositionOfOccurrence(word, letter, position) {
-  let result = 0;
+  let count = 0;
   for (let i = 0; i <= position; i++) {
-    if (word[i] === letter) {
-      result++;
-    }
+    if (word[i] === letter) count++;
   }
-  return result;
+  return count;
 }
 
 function revealWord(guess) {
@@ -142,7 +134,7 @@ function revealWord(guess) {
     if (isWinner) {
       alert('Congratulations!');
     } else if (isGameOver) {
-      alert(`Better luck next time! The word was ${state.secret}.`);
+      alert(`Game over. The word was ${state.secret}.`);
     }
   }, 3 * animation_duration);
 }
@@ -152,22 +144,24 @@ function isLetter(key) {
 }
 
 function addLetter(letter) {
-  if (state.currentCol === 5) return;
-  state.grid[state.currentRow][state.currentCol] = letter;
-  state.currentCol++;
+  if (state.currentCol < 5) {
+    state.grid[state.currentRow][state.currentCol] = letter;
+    state.currentCol++;
+    updateGrid();
+  }
 }
 
 function removeLetter() {
-  if (state.currentCol === 0) return;
-  state.grid[state.currentRow][state.currentCol - 1] = '';
-  state.currentCol--;
+  if (state.currentCol > 0) {
+    state.currentCol--;
+    state.grid[state.currentRow][state.currentCol] = '';
+    updateGrid();
+  }
 }
 
-function startup() {
-  const game = document.getElementById('game');
-  drawGrid(game);
-
+// Initialize game
+document.addEventListener('DOMContentLoaded', () => {
+  const gameContainer = document.getElementById('game');
+  drawGrid(gameContainer);
   registerKeyboardEvents();
-}
-
-startup();
+});
