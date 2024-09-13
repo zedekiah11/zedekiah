@@ -123,8 +123,9 @@ hr {
   align-items: center;
   margin-top: 1rem; /* Moved the keyboard higher */
   padding: 0 5px; /* Adjust padding for better fit */
-  width: 100%; /* Make sure keyboard takes full width */
+  width: 80%; /* Default width for desktop users */
   box-sizing: border-box; /* Ensure padding is included in width */
+  max-width: 1000px; /* Max width to prevent keyboard from getting too large */
 }
 
 .keyboard-row {
@@ -133,26 +134,25 @@ hr {
   margin-bottom: 8px;
   width: 100%; /* Ensure rows take full width */
   overflow: hidden; /* Prevent overflow */
-  flex-wrap: wrap; /* Allow rows to wrap on smaller screens */
 }
 
 .key {
-  width: 50px; /* Adjust width for better fit */
-  height: 60px; /* Adjust height for better fit */
+  width: 60px; /* Default width for desktop users */
+  height: 80px; /* Default height for desktop users */
   background-color: #818384;
   color: white;
-  margin: 2px; /* Adjust margin */
+  margin: 3px;
   border-radius: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 1.2rem; /* Adjust font size */
+  font-size: 1.4rem; /* Default font size for desktop users */
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
 .key.large {
-  width: 80px; /* Adjust width for large keys */
+  width: 100px; /* Default width for large keys */
 }
 
 .key:disabled {
@@ -170,10 +170,14 @@ hr {
 
 /* Mobile specific adjustments */
 @media (max-width: 600px) {
+  #keyboard {
+    width: 95%; /* Make keyboard larger relative to screen width on mobile */
+  }
+
   .key {
     width: 45px; /* Adjust width for mobile */
-    height: 50px; /* Adjust height for mobile */
-    font-size: 1rem; /* Adjust font size for mobile */
+    height: 60px; /* Adjust height for mobile */
+    font-size: 1.2rem; /* Adjust font size for mobile */
   }
 
   .key.large {
