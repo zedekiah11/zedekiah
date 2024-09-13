@@ -1,3 +1,4 @@
+/* Base styles for the whole page */
 html,
 body {
   background: var(--default);
@@ -110,4 +111,12 @@ hr {
   font-size: 24px; /* Adjust icon size */
   color: white;
   text-decoration: none; /* Remove underline */
+}
+
+/* Responsive design for mobile */
+@media (max-width: 600px) {
+  .box {
+    width: 20vw; /* Make boxes larger on smaller screens */
+    height: 20vw;
+  }
 }
