@@ -3,6 +3,7 @@ html, body {
   background: var(--default);
   margin: 0;
   padding: 0;
+  height: 100%;
   font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -26,13 +27,13 @@ html, body {
   display: grid;
   grid-template-rows: repeat(6, auto);
   grid-template-columns: repeat(5, auto);
+  gap: 4px; /* Added gap to handle spacing between boxes */
 }
 
 .box {
   width: 60px;
   height: 60px;
   border: 2px solid var(--empty);
-  margin: 4px;
   color: white;
   text-transform: uppercase;
   display: grid;
@@ -119,13 +120,16 @@ hr {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 1rem;
+  margin-top: 1rem; /* Moved the keyboard higher */
+  padding: 0 10px; /* Added padding to handle edge cases */
 }
 
 .keyboard-row {
   display: flex;
   justify-content: center;
   margin-bottom: 8px;
+  width: 100%; /* Make sure rows take full width */
+  max-width: 600px; /* Limit max width to keep keyboard manageable */
 }
 
 .key {
@@ -144,7 +148,12 @@ hr {
 }
 
 .key.large {
-  width: 100px; /* Width for large keys like Enter and Backspace */
+  width: 100px;
+}
+
+.key:disabled {
+  background-color: #3a3a3c; /* Gray for disabled keys */
+  cursor: not-allowed; /* Show not-allowed cursor */
 }
 
 .key.correct {
@@ -153,11 +162,4 @@ hr {
 
 .key.misplaced {
   background-color: #b59f3b; /* Yellow for misplaced letters */
-}
-
-.key.disabled {
-  background-color: #3a3a3c; /* Gray for disabled keys */
-  pointer-events: none; /* Prevent clicks */
-  opacity: 0.5; /* Make disabled keys appear inactive */
-  cursor: default; /* Change cursor to default */
 }
