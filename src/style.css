@@ -120,3 +120,28 @@ hr {
     height: 20vw;
   }
 }
+
+/* Styles for the on-screen keyboard */
+#keyboard {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.key {
+  width: 40px;
+  height: 40px;
+  margin: 2px;
+  font-size: 1.5rem;
+  text-align: center;
+  line-height: 40px;
+  background-color: var(--empty);
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.key:hover {
+  background-color: var(--wrong);
+}
