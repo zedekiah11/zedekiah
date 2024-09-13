@@ -137,14 +137,8 @@ function handleSubmit() {
 function updateKeyColor(letter, status) {
   const keyButton = document.querySelector(`button[data-key="${letter}"]`);
   if (keyButton) {
-    keyButton.classList.remove('correct', 'misplaced', 'disabled'); // Remove previous status classes
-    if (status !== 'disabled') {
-      keyButton.classList.add(status);
-    } else {
-      keyButton.classList.add('disabled');
-      keyButton.disabled = true; // Disable button to prevent further clicks
-    }
-    state.usedKeys[letter] = status === 'disabled'; // Mark the key as used or not
+    keyButton.classList.add(status);
+    state.usedKeys[letter] = status === 'disabled'; // Disable only for 'disabled' keys
   }
 }
 
