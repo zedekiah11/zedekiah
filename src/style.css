@@ -122,10 +122,9 @@ hr {
   flex-direction: column;
   align-items: center;
   margin-top: 1rem; /* Moved the keyboard higher */
-  padding: 0 5px; /* Adjust padding for better fit */
   width: 80%; /* Default width for desktop users */
-  box-sizing: border-box; /* Ensure padding is included in width */
   max-width: 1000px; /* Max width to prevent keyboard from getting too large */
+  box-sizing: border-box; /* Ensure padding is included in width */
 }
 
 .keyboard-row {
@@ -160,10 +159,12 @@ hr {
   cursor: not-allowed; /* Show not-allowed cursor */
 }
 
+/* Correct letter style */
 .key.correct {
   background-color: #538d4e; /* Green for correct letters */
 }
 
+/* Misplaced letter style */
 .key.misplaced {
   background-color: #b59f3b; /* Yellow for misplaced letters */
 }
@@ -172,6 +173,7 @@ hr {
 @media (max-width: 600px) {
   #keyboard {
     width: 95%; /* Make keyboard larger relative to screen width on mobile */
+    max-width: none; /* Remove max-width constraint on mobile */
   }
 
   .key {
