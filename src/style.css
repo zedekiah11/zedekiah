@@ -1,9 +1,8 @@
-/* General Styling */
+/* General styles */
 html, body {
   background: var(--default);
   margin: 0;
   padding: 0;
-  height: 100%;
   font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -12,23 +11,6 @@ html, body {
   --empty: #3a3a3c;
   --wrong: #b59f3b;
   --right: #538d4e;
-}
-
-.title {
-  color: white;
-  text-align: center;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  font-size: 3rem;
-  margin-bottom: 0;
-  position: relative;
-}
-
-.title-word-clone {
-  position: absolute;
-  left: calc(50% + 75px);
-  transform: rotate(25deg);
-  color: yellow;
-  font-size: 1.2rem;
 }
 
 #game {
@@ -75,9 +57,32 @@ html, body {
 }
 
 @keyframes flip {
-  0% { transform: scaleY(1); }
-  50% { transform: scaleY(0); }
-  100% { transform: scaleY(1); }
+  0% {
+    transform: scaleY(1);
+  }
+  50% {
+    transform: scaleY(0);
+  }
+  100% {
+    transform: scaleY(1);
+  }
+}
+
+.title {
+  color: white;
+  text-align: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 3rem;
+  margin-bottom: 0;
+  position: relative;
+}
+
+.title-word-clone {
+  position: absolute;
+  left: calc(50% + 75px);
+  transform: rotate(25deg);
+  color: yellow;
+  font-size: 1.2rem;
 }
 
 hr {
@@ -109,38 +114,50 @@ hr {
   text-decoration: none;
 }
 
-/* Keyboard Styling */
+/* On-screen keyboard styles */
 #keyboard {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 20px;
+  margin-top: 1rem;
 }
 
 .keyboard-row {
   display: flex;
   justify-content: center;
-  margin: 5px 0;
+  margin-bottom: 8px;
 }
 
 .key {
-  width: 40px;
-  height: 40px;
-  margin: 2px;
-  font-size: 1.5rem;
-  text-align: center;
-  line-height: 40px;
-  background-color: var(--empty);
-  border: none;
+  width: 60px; /* Increased width */
+  height: 80px; /* Increased height */
+  background-color: #818384;
   color: white;
+  margin: 3px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.4rem; /* Increased font size */
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-.key:hover {
-  background-color: var(--wrong);
+.key.large {
+  width: 100px; /* Width for large keys like Enter and Backspace */
 }
 
-.key:active {
-  background-color: var(--right);
+.key.correct {
+  background-color: #538d4e; /* Green for correct letters */
 }
 
+.key.misplaced {
+  background-color: #b59f3b; /* Yellow for misplaced letters */
+}
+
+.key.disabled {
+  background-color: #3a3a3c; /* Gray for disabled keys */
+  pointer-events: none; /* Prevent clicks */
+  opacity: 0.5; /* Make disabled keys appear inactive */
+  cursor: default; /* Change cursor to default */
+}
