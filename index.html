@@ -1,36 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#121213" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#121213" />
 
-  <title>PHX Wordle</title>
-  <meta name="description" content="Order of The Phoenix Wordle" />
+    <title>PHX Wordle</title>
+    <meta name="description" content="Order of The Phoenix Wordle" />
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" type="image/png" href="/wordle-speedrun/assets/favicon.png" />
+  </head>
+  <body>
+    <h1 class="title">Wordle <span class="title-word-clone">Phoenix</span></h1>
+    <div id="game"></div>
+    <hr />
+    <p class="footer">
+      Enjoy Guessing PHOENIX!!
+      <span class="v-separator">|</span>
+      <span class="social-icons">
+        <a class="social-media-link" href="https://www.facebook.com/orderofthephoenix3" title="Facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+        <a class="social-media-link" href="http://discord.gg/orderofthephoenix" title="Discord">
+          <i class="fab fa-discord"></i>
+        </a>
+      </span>
+    </p>
 
-  <link rel="stylesheet" href="./src/style.css" />
+    <!-- On-Screen Keyboard -->
+    <div id="keyboard">
+      <button class="key" data-key="q">Q</button>
+      <button class="key" data-key="w">W</button>
+      <button class="key" data-key="e">E</button>
+      <button class="key" data-key="r">R</button>
+      <button class="key" data-key="t">T</button>
+      <button class="key" data-key="y">Y</button>
+      <button class="key" data-key="u">U</button>
+      <button class="key" data-key="i">I</button>
+      <button class="key" data-key="o">O</button>
+      <button class="key" data-key="p">P</button>
+      <button class="key" data-key="Enter">Enter</button>
+      <button class="key" data-key="Backspace">Backspace</button>
+      <!-- Add other keys as needed -->
+    </div>
 
-  <link rel="icon" type="image/png" href="/wordle-speedrun/assets/favicon.png" />
-</head>
-<body>
-  <h1 class="title">Wordle <span class="title-word-clone">Phoenix</span></h1>
-  <div id="game"></div>
-  <hr />
-  <p class="footer">
-    Enjoy Guessing PHOENIX!!
-    <span class="v-separator">|</span>
-    <span class="social-icons">
-      <a class="social-media-link" href="https://www.facebook.com/orderofthephoenix3" title="Facebook">
-        <i class="fab fa-facebook"></i>
-      </a>
-      <a class="social-media-link" href="http://discord.gg/orderofthephoenix" title="Discord">
-        <i class="fab fa-discord"></i>
-      </a>
-    </span>
-  </p>
-  <script defer src="./src/index.js" type="module"></script>
-</body>
+    <script defer src="./src/index.js" type="module"></script>
+  </body>
 </html>
