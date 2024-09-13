@@ -110,4 +110,64 @@ function revealWord(guess) {
   const row = state.currentRow;
   const animation_duration = 500; // ms
 
-  for (let i = 
+  for (let i = 0; i < 5; i++) {
+    const box = document.getElementById(`box${row}${i}`);
+    const letter = box.textContent;
+    const numOfOccurrencesSecret = getNumOfOccurrencesInWord(state.secret, letter);
+    const numOfOccurrencesGuess = getNumOfOccurrencesInWord(guess, letter);
+    const letterPosition = getPositionOfOccurrence(guess, letter, i);
+
+    setTimeout(() => {
+      if (numOfOccurrencesGuess > numOfOccurrencesSecret && letterPosition > numOfOccurrencesSecret) {
+        box.classList.add('empty');
+      } else {
+        if (letter === state.secret[i]) {
+          box.classList.add('right');
+        } else if (state.secret.includes(letter)) {
+          box.classList.add('wrong');
+        } else {
+          box.classList.add('empty');
+        }
+      }
+    }, ((i + 1) * animation_duration) / 2);
+
+    box.classList.add('animated');
+    box.style.animationDelay = `${(i * animation_duration) / 2}ms`;
+  }
+
+  const isWinner = state.secret === guess;
+  const isGameOver = state.currentRow === 5;
+
+  setTimeout(() => {
+    if (isWinner) {
+      alert('Congratulations!');
+    } else if (isGameOver) {
+      alert(`Better luck next time! The word was ${state.secret}.`);
+    }
+  }, 3 * animation_duration);
+}
+
+function isLetter(key) {
+  return key.length === 1 && key.match(/[a-z]/i);
+}
+
+function addLetter(letter) {
+  if (state.currentCol === 5) return;
+  state.grid[state.currentRow][state.currentCol] = letter;
+  state.currentCol++;
+}
+
+function removeLetter() {
+  if (state.currentCol === 0) return;
+  state.grid[state.currentRow][state.currentCol - 1] = '';
+  state.currentCol--;
+}
+
+function startup() {
+  const game = document.getElementById('game');
+  drawGrid(game);
+
+  registerKeyboardEvents();
+}
+
+startup();
